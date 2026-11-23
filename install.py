@@ -4,7 +4,7 @@ def install():
     try:
         conn = get_db_connection()
         cur = conn.cursor()
-        
+                
         # Entidade Missão
         cur.execute("""
             CREATE TABLE IF NOT EXISTS missao (
@@ -49,7 +49,7 @@ def install():
             cur.execute("DELETE FROM fabricante")
             
         cur.executemany("""
-            INSERT INTO missao
+            INSERT INTO missao (nome, duracao, concluida, categoria)
             VALUES (?, ?, ?, ?)
         """, [
             ('missao 1', 5, False, 'combate'),
@@ -91,7 +91,8 @@ def install():
             ("arco vita", 5, 0, "ultima geracao")
             )
         
-    
+        conn.commit()
+        
     except Exception:
         conn.rollback()
     finally:
