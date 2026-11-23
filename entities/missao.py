@@ -1,11 +1,11 @@
 class Missao:
     def __init__(
         self,
-        missao_id: int | None = None,
         nome: str = "",
         duracao: int = 0,
         concluida: bool = False,
-        categoria: str = ""
+        categoria: str = "",
+        missao_id: int | None = None
     ) -> None:
         self.id = missao_id
         self.nome = nome
