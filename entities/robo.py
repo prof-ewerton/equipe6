@@ -3,7 +3,7 @@ class Robo:
         self,
         nome: str,
         anoFabricacao: int,
-        robo_id= int | None = None,
+        robo_id: int | None,
         ligado: bool = False,
         modelo: str = ""):
         self.id = robo_id,
