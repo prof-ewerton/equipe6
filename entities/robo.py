@@ -10,6 +10,3 @@ class Robo:
         self.anoFabricacao=anoFabricacao
         self.ligado=ligado
         self.modelo=modelo
-        
-        
-        
