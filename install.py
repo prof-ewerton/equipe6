@@ -41,9 +41,12 @@ def install():
         
         
         cur.execute("SELECT COUNT(*) FROM missao")
+        missao_ct = cur.fetchone()[0]
         cur.execute("SELECT COUNT(*) FROM robos")
+        robos_ct = cur.fetchone()[0]
         cur.execute("SELECT COUNT(*) FROM fabricante")
-        if cur.fetchone()[0] != 0:
+        fabricante_ct = cur.fetchone()[0]
+        if missao_ct != 0 or robos_ct != 0 or fabricante_ct != 0:
             cur.execute("DELETE FROM missao")
             cur.execute("DELETE FROM robos")
             cur.execute("DELETE FROM fabricante")
@@ -70,26 +73,16 @@ def install():
             ("Lenovan", 1985, False, "QuadraTecnon"),
         ])
         
-        cur.execute(
-            "INSERT INTO fabricante (nome, quantidadeRobos, ativo, tecnologia) VALUES (?, ?, ?, ?)",
-            ("factory", 2, 0, "rapida")
-            )
-        cur.execute(
-            "INSERT INTO fabricante (nome, quantidadeRobos, ativo, tecnologia) VALUES (?, ?, ?, ?)",
-            ("mercedes", 4, 0, "tecnologia com ia")
-            )
-        cur.execute(
-            "INSERT INTO fabricante (nome, quantidadeRobos, ativo, tecnologia) VALUES (?, ?, ?, ?)",
-            ("toyota", 3, 0, "super tecnologia")
-            )
-        cur.execute(
-            "INSERT INTO fabricante (nome, quantidadeRobos, ativo, tecnologia) VALUES (?, ?, ?, ?)",
-            ("mercedes", 4, 0, "tecnologia com ia")
-            )
-        cur.execute(
-            "INSERT INTO fabricante (nome, quantidadeRobos, ativo, tecnologia) VALUES (?, ?, ?, ?)",
+        cur.executemany("""
+            INSERT INTO robos (nome, quantidadeRobos, ativo, tecnologia)
+            VALUES (?, ?, ?, ?)
+        """, [(
+            ("factory", 2, 0, "rapida"),
+            ("mercedes", 4, 0, "tecnologia com ia"),
+            ("toyota", 3, 0, "super tecnologia"),
+            ("mercedes", 4, 0, "tecnologia com ia"),
             ("arco vita", 5, 0, "ultima geracao")
-            )
+        )])
         
         conn.commit()
         
