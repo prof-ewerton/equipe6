@@ -28,12 +28,25 @@ def install():
                 )
             """)
         
+        # Entidade Fabricante
+        cur.execute("""
+            CREATE TABLE IF NOT EXISTS fabricante(
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                nome TEXT NOT NULL,
+                quantidadeRobos INT,
+                ativo INTEGER NOT NULL DEFAULT 0,
+                tecnologia TEXT NOT NULL
+                )
+            """)
+        
         
         cur.execute("SELECT COUNT(*) FROM missao")
         cur.execute("SELECT COUNT(*) FROM robos")
+        cur.execute("SELECT COUNT(*) FROM fabricante")
         if cur.fetchone()[0] != 0:
             cur.execute("DELETE FROM missao")
             cur.execute("DELETE FROM robos")
+            cur.execute("DELETE FROM fabricante")
             
         cur.executemany("""
             INSERT INTO missao
@@ -57,8 +70,28 @@ def install():
             ("Lenovan", 1985, False, "QuadraTecnon"),
         ])
         
+        cur.execute(
+            "INSERT INTO fabricante (nome, quantidadeRobos, ativo, tecnologia) VALUES (?, ?, ?, ?)",
+            ("factory", 2, 0, "rapida")
+            )
+        cur.execute(
+            "INSERT INTO fabricante (nome, quantidadeRobos, ativo, tecnologia) VALUES (?, ?, ?, ?)",
+            ("mercedes", 4, 0, "tecnologia com ia")
+            )
+        cur.execute(
+            "INSERT INTO fabricante (nome, quantidadeRobos, ativo, tecnologia) VALUES (?, ?, ?, ?)",
+            ("toyota", 3, 0, "super tecnologia")
+            )
+        cur.execute(
+            "INSERT INTO fabricante (nome, quantidadeRobos, ativo, tecnologia) VALUES (?, ?, ?, ?)",
+            ("mercedes", 4, 0, "tecnologia com ia")
+            )
+        cur.execute(
+            "INSERT INTO fabricante (nome, quantidadeRobos, ativo, tecnologia) VALUES (?, ?, ?, ?)",
+            ("arco vita", 5, 0, "ultima geracao")
+            )
         
-        
+    
     except Exception:
         conn.rollback()
     finally:
