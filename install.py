@@ -1,6 +1,6 @@
 from database.connection import get_db_connection
 
-    def install:
+    def install():
         connection = get_db_connection()
         
         try:
@@ -38,6 +38,50 @@ from database.connection import get_db_connection
             
         finally:
             connection.close()
+        
+        try:
+        
+        connection.execute("""
+            CREATE TABLE IF NOT EXISTS fabricante(
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                nome TEXT NOT NULL,
+                quantidadeRobos INT,
+                ativo INTEGER NOT NULL DEFAULT 0,
+                tecnologia TEXT NOT NULL
+                )
+            """)
+
+        
+        cursor = connection.execute("SELECT COUNT(*) FROM fabricante")
+        total = cursor.fetchone()[0]
+        
+        if total == 0:
+            connection.execute(
+                "INSERT INTO fabricante (nome, quantidadeRobos, ativo, tecnologia) VALUES (?, ?, ?, ?)",
+                ("factory", 2, 0, "rapida")
+                )
+            connection.execute(
+                "INSERT INTO fabricante (nome, quantidadeRobos, ativo, tecnologia) VALUES (?, ?, ?, ?)",
+                ("mercedes", 4, 0, "tecnologia com ia")
+                )
+            connection.execute(
+                "INSERT INTO fabricante (nome, quantidadeRobos, ativo, tecnologia) VALUES (?, ?, ?, ?)",
+                ("toyota", 3, 0, "super tecnologia")
+                )
+            connection.execute(
+                "INSERT INTO fabricante (nome, quantidadeRobos, ativo, tecnologia) VALUES (?, ?, ?, ?)",
+                ("mercedes", 4, 0, "tecnologia com ia")
+                )
+            connection.execute(
+                "INSERT INTO fabricante (nome, quantidadeRobos, ativo, tecnologia) VALUES (?, ?, ?, ?)",
+                ("arco vita", 5, 0, "ultima geracao")
+                )
+        connection.commit()
+
+    finally:
+        connection.close()
+            
+    
             
     try:
         conn = get_db_connection()
