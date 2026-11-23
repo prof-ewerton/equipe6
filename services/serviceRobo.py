@@ -11,14 +11,14 @@ class ServiceRobo:
             modelo=modelo,
             )
         
-        return self.create(robo)
+        return self.repository.create(robo)
     
     def _validar_robo(self, nome: str, anoFabricacao: int):
         nome = nome.strip()
         
         if not nome:
             return ValueError("O nome do robô é obrigatório.")
-        if type(anoFabricacao) not int:
+        if type(anoFabricacao) is not int:
             return ValueError("O ano de fabricação do robô deve ser um número inteiro.")
         
         return nome, anoFabricacao
