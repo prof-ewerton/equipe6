@@ -1,6 +1,6 @@
 from database.connection import get_db_connection
 
-def install:           
+def install():           
     try:
         conn = get_db_connection()
         cur = conn.cursor()
