@@ -66,11 +66,11 @@ def install():
             INSERT INTO robos (nome, anoFabricacao, ligado, modelo)
             VALUES (?, ?, ?, ?)
         """, [
-            ("Rodolfo", 2002, False, "Sony3000"),
-            ("Neon", 2026, True, "TechEvolution2.0"),
-            ("Doroteia", 1999, False, "LG4000"),
-            ("Siri", 2015, True, "AppleTech360"),
-            ("Lenovan", 1985, False, "QuadraTecnon"),
+            ("Rodolfo", 2002, False, "OpenIA"),
+            ("Neon", 2026, True, "LG360.0"),
+            ("Doroteia", 1999, False, "LG360"),
+            ("Siri", 2015, True, "LG360"),
+            ("Lenovan", 1985, False, "Sonny2000"),
         ])
         
         cur.executemany("""

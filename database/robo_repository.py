@@ -1,7 +1,7 @@
 from database.connection import get_db_connection
 from entities.robo import Robo
 
-class MissaoRepository:
+class RoboRepository:
     def __init__(self):
         self.conn = get_db_connection()
         
