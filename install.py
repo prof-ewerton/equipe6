@@ -41,9 +41,12 @@ def install():
         
         
         cur.execute("SELECT COUNT(*) FROM missao")
+        missao_ct = cur.fetchone()[0]
         cur.execute("SELECT COUNT(*) FROM robos")
+        robos_ct = cur.fetchone()[0]
         cur.execute("SELECT COUNT(*) FROM fabricante")
-        if cur.fetchone()[0] != 0:
+        fabricante_ct = cur.fetchone()[0]
+        if missao_ct != 0 or robos_ct != 0 or fabricante_ct != 0:
             cur.execute("DELETE FROM missao")
             cur.execute("DELETE FROM robos")
             cur.execute("DELETE FROM fabricante")
