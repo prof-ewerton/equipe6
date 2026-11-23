@@ -73,26 +73,16 @@ def install():
             ("Lenovan", 1985, False, "QuadraTecnon"),
         ])
         
-        cur.execute(
-            "INSERT INTO fabricante (nome, quantidadeRobos, ativo, tecnologia) VALUES (?, ?, ?, ?)",
-            ("factory", 2, 0, "rapida")
-            )
-        cur.execute(
-            "INSERT INTO fabricante (nome, quantidadeRobos, ativo, tecnologia) VALUES (?, ?, ?, ?)",
-            ("mercedes", 4, 0, "tecnologia com ia")
-            )
-        cur.execute(
-            "INSERT INTO fabricante (nome, quantidadeRobos, ativo, tecnologia) VALUES (?, ?, ?, ?)",
-            ("toyota", 3, 0, "super tecnologia")
-            )
-        cur.execute(
-            "INSERT INTO fabricante (nome, quantidadeRobos, ativo, tecnologia) VALUES (?, ?, ?, ?)",
-            ("mercedes", 4, 0, "tecnologia com ia")
-            )
-        cur.execute(
-            "INSERT INTO fabricante (nome, quantidadeRobos, ativo, tecnologia) VALUES (?, ?, ?, ?)",
+        cur.executemany("""
+            INSERT INTO robos (nome, quantidadeRobos, ativo, tecnologia)
+            VALUES (?, ?, ?, ?)
+        """, [(
+            ("factory", 2, 0, "rapida"),
+            ("mercedes", 4, 0, "tecnologia com ia"),
+            ("toyota", 3, 0, "super tecnologia"),
+            ("mercedes", 4, 0, "tecnologia com ia"),
             ("arco vita", 5, 0, "ultima geracao")
-            )
+        )])
         
         conn.commit()
         
