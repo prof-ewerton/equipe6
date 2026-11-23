@@ -1,6 +1,8 @@
 from interface.ui import Ui
+from install import  install
 
 def main():
+    install()
     ui = Ui()
     ui.show()
 

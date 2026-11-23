@@ -29,6 +29,6 @@ A funcionalidade deverá:
 8. Persistir o registro no banco de dados e informar ao usuário se o cadastro foi realizado com sucesso.
 
 Tema -> Império dos robos
-Robô - nome(str), anoFabruicacao(int), ligado(bool), modelo(str)
+Robô - nome(str), anoFabruicacao(int), ligado(bool), modelo(str) -> CarolinaaCabral
 Fabricante - nome(str), quantidadeRobos(int), ativo(bool), tecnologia(str)
 Missão - nome(str), duracao(int), concluida(bool), categoria(str) -> muliroZ
